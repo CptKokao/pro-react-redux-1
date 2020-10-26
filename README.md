@@ -6,11 +6,9 @@
   - Использует UI компоненты
   - Использует reconciliation алгоритм
   
----
 ### 1-3. Первое react приложение
 [https://codesandbox.io/](https://codesandbox.io/)
 
----
 ### 1-4. Среда разработки
 
     npm i -g create-react-app
@@ -55,21 +53,43 @@
 
     const a = [1, 2];
     const max = Math.max(...a)
-    const b = [...arr1, ...arr2] - *копия []*
 
-### 2-6. Деструктуризация (Упрощает получение свойств из объектов)
+    const b = [...arr1, ...arr2] - копия []
+
+### 2-6. Деструктуризация объектов (упрощает получение свойств из объектов)
 
     const person = {
       name: 'Sergey',
       last: 'Markov'
     }
-    const { name, last, age = 18 } = person; - *Параметр по умолчанию, если сойства нет (age = 18)*
-    const { name: firstname, last: lastname } = person; - *изменяет название переменных*
-    
+    const { name, last, age = 18 } = person; - параметр по умолчанию, если сойства нет (age = 18)
+    const { name: firstname, last: lastname } = person; - изменяет название переменных
+
     const person = {
       name: {
         first: 'Sergey',
         last: 'Markov'
       }
     }
-    const {name: {first: firstname, last: lastname} = {}} - *Получает свойства во вложенном {}*
+    const {name: {first: firstname, last: lastname} = {}} - получает свойства во вложенном {}
+
+    
+### 2-7. Деструктуризация массивов (упрощает получение свойств из объектов)
+
+    const [a, , b] = [1, 2, 3]; - можно пропускать значения
+
+    const [a, b, c = 3] = [1, 2]; - добавляет значения по-умолчанию
+
+    const arr = [1, 2, 3];
+    const [a, ...others] = arr; - получает все остальные значения
+
+    const shape = {
+      type: 'segment',
+      coordinates: {
+        start: [10, 15],
+        end: [17, 15]
+      }
+    };
+
+    const {coordinates: {start: [startX, startY], end: [endX, endY]}} = shape;
+    console.log(startX, startY, endX, endY);

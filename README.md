@@ -54,6 +54,7 @@
     const a = [1, 2];
     const max = Math.max(...a)
 
+
     const b = [...arr1, ...arr2] - копия []
 
 ### 2-6. Деструктуризация объектов (упрощает получение свойств из объектов)
@@ -64,6 +65,7 @@
     }
     const { name, last, age = 18 } = person; - параметр по умолчанию, если сойства нет (age = 18)
     const { name: firstname, last: lastname } = person; - изменяет название переменных
+
 
     const person = {
       name: {
@@ -78,10 +80,13 @@
 
     const [a, , b] = [1, 2, 3]; - можно пропускать значения
 
+
     const [a, b, c = 3] = [1, 2]; - добавляет значения по-умолчанию
+
 
     const arr = [1, 2, 3];
     const [a, ...others] = arr; - получает все остальные значения
+
 
     const shape = {
       type: 'segment',

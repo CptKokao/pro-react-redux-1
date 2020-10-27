@@ -53,7 +53,7 @@
 
     const a = [1, 2];
     const max = Math.max(...a)
-
+    ---
 
     const b = [...arr1, ...arr2] - копия []
 
@@ -65,7 +65,7 @@
     }
     const { name, last, age = 18 } = person; - параметр по умолчанию, если сойства нет (age = 18)
     const { name: firstname, last: lastname } = person; - изменяет название переменных
-
+    ---
 
     const person = {
       name: {
@@ -79,15 +79,15 @@
 ### 2-7. Деструктуризация массивов (упрощает получение свойств из объектов)
 
     const [a, , b] = [1, 2, 3]; - можно пропускать значения
-
+    ---
 
     const [a, b, c = 3] = [1, 2]; - добавляет значения по-умолчанию
-
+    ---
 
     const arr = [1, 2, 3];
     const [a, ...others] = arr; - получает все остальные значения
-
-
+    ---
+    
     const shape = {
       type: 'segment',
       coordinates: {
@@ -98,3 +98,84 @@
 
     const {coordinates: {start: [startX, startY], end: [endX, endY]}} = shape;
     console.log(startX, startY, endX, endY);
+
+### 2-8. Шаблонные строки (template strings)
+
+    `Hello ${world}`
+    `Hello ${getWorld()}`
+
+### 2-9. Объекты
+    const x = 1;
+    const y = 2;
+
+    const a = {
+      x, 
+      y,
+      draw() {...}  
+    }
+    ---
+
+    const res = Object.assign({}, obj1, obj2) - копирование объектов
+
+### 2-10. Оператор Object Spread
+
+Разворарачивает объект, превращая его в список свойств.
+
+    const res = {
+      ...obj1,
+      ...obj2,
+      anyconst,
+      anyfunc() {...}
+    } 
+
+### 2-11. Прототипы
+
+**new**
+
+    function Animal(name, voice) {
+      this.name = name;
+      this.voice = voice;
+    }
+
+    Animal.prototype.say = function() {
+      console.log(this.name, 'goes', this.voice);
+    }
+
+    const dog = new Animal('Dog', 'woof')
+    dog.say();
+---
+
+**Object.create** - Устаревший способ
+
+    const animal = {
+      say: function() {
+        console.log(this.name, 'goes', this.voice);
+      }
+    };
+
+    function createAnimal(name, voice) {
+      const result = Object.create(animal);
+      result.name = name;
+      result.voice = voice;
+      return result;
+    }
+
+    const dog = createAnimal('Dog', 'woof')
+    dog.say();
+---
+
+**Object.setPrototypeOf** - Не оптимизирован
+
+    const animal = {
+      say: function() {
+        console.log(this.name, 'goes', this.voice);
+      }
+    };
+
+    const dog = {
+      name: 'dog',
+      voice: 'woof'
+    };
+
+    Object.setPrototypeOf(dog, animal)
+    dog.say();

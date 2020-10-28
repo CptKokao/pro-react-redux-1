@@ -179,3 +179,27 @@
 
     Object.setPrototypeOf(dog, animal)
     dog.say();
+
+
+### 2-11. Классы
+
+    class Animal {
+      constructor(name, voice) {
+        this.name = name;
+        this.voice = voice;
+      }
+
+      say() {
+        console.log(this.name, 'goes', this.voice);
+      }
+    }
+
+    class Bird extends Animal {
+      constructor(name, voice, canFly) {
+        super(name, voice);
+        this.canFly = canFly;
+      }
+    }
+
+    const duck = new Bird('duck', 'quack', true);
+    console.log(duck)
